@@ -1,2 +1,2 @@
-FROM ibkr/clientportal-gateway:latest
+FROM ghcr.io/interactivebrokers/clientportal-gateway:latest
 EXPOSE 5000
