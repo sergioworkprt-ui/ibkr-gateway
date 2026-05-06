@@ -1,0 +1,5 @@
+listenPort: 5000
+sslCert: "vertx.jks"
+sslPwd: "mywebapi"
+appTimeout: 60
+listenSsl: true
