@@ -1,12 +1,17 @@
-FROM eclipse-temurin:11-jre
+FROM eclipse-temurin:8-jre
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y unzip curl && \
-    curl -L -o gateway.zip https://download2.interactivebrokers.com/portal/clientportal.gw.zip && \
-    unzip gateway.zip && \
-    rm gateway.zip
+RUN apt-get update && apt-get install -y --no-install-recommends unzip && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY clientportal.gw.zip clientportal.gw.zip
+RUN unzip -q clientportal.gw.zip && rm clientportal.gw.zip
+
+COPY root/conf.yaml root/conf.yaml
+COPY start.sh start.sh
+RUN chmod +x start.sh
 
 EXPOSE 5000
 
-CMD ["sh", "-c", "bin/run.sh root/conf.yaml"]
+CMD ["./start.sh"]
