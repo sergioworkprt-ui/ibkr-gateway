@@ -3,10 +3,10 @@ FROM eclipse-temurin:8-jre
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    unzip python3 python3-pip && \
+    unzip python3 && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --no-cache-dir fastapi uvicorn httpx
+RUN apt-get update && apt-get install -y python3-fastapi python3-uvicorn python3-httpx
 
 COPY clientportal.gw.zip clientportal.gw.zip
 RUN unzip -q clientportal.gw.zip && rm clientportal.gw.zip
