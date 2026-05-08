@@ -6,5 +6,5 @@ sh bin/run.sh root/conf.yaml &
 # Wait for gateway to initialize
 sleep 8
 
-# Start FastAPI proxy in foreground (Render monitors this process)
-exec python3 nexus_server.py
+# Start FastAPI proxy using venv python in foreground (Render monitors this process)
+exec /opt/venv/bin/python nexus_server.py
