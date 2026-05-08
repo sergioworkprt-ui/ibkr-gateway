@@ -16,7 +16,7 @@ serverOptions:
     maxWorkerExecuteTime: 100
     internalBlockingPoolSize: 20
 cors:
-    origin.allowed: "*"
+    origin.allowed: "https://ibkr-gateway-96a6.onrender.com"
     allowCredentials: true
 webApps:
     - name: "demo"
