@@ -16,16 +16,12 @@ RUN unzip -q clientportal.gw.zip && \
         cp -rp clientportal.gw/. . && rm -rf clientportal.gw; \
     fi
 
-# Print MANIFEST.MF so the real Main-Class is visible in build logs
-RUN echo '=== MANIFEST.MF ===' && \
-    unzip -p dist/ibgroup.web.core.iblink.router.clientportal.gw.jar META-INF/MANIFEST.MF && \
-    echo '=== END MANIFEST ==='
-
-# Use original bin/run.sh from zip (correct Main-Class)
+# Replace zip's bin/run.sh (has broken ../ path) with correct version
+COPY bin/run.sh bin/run.sh
 COPY root/conf.yaml root/conf.yaml
 COPY nexus_server.py nexus_server.py
 COPY start.sh start.sh
-RUN chmod +x start.sh
+RUN chmod +x start.sh bin/run.sh
 
 EXPOSE 8080
 
