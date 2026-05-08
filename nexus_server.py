@@ -29,5 +29,5 @@ async def proxy(request: Request, path: str):
     return Response(content=resp.content, status_code=resp.status_code, headers=resp_headers)
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))
+    port = int(os.environ["PORT"])
     uvicorn.run(app, host="0.0.0.0", port=port)
