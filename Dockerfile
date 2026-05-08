@@ -16,6 +16,9 @@ RUN unzip -q clientportal.gw.zip && \
         cp -rp clientportal.gw/. . && rm -rf clientportal.gw; \
     fi
 
+# Force public DNS to avoid Kubernetes cluster DNS search domain issues
+RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf
+
 # Replace zip's bin/run.sh (has broken ../ path) with correct version
 COPY bin/run.sh bin/run.sh
 COPY root/conf.yaml root/conf.yaml

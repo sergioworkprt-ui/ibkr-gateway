@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Force public DNS at runtime (Kubernetes may overwrite /etc/resolv.conf at pod start)
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+
 export JAVA_TOOL_OPTIONS="-Xmx1g -Xms256m"
 
 # </dev/null prevents gateway from reading closed stdin (Stream closed error)
