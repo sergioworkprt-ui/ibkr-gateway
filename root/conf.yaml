@@ -1,26 +1,26 @@
-    ip2loc: "US"
-    proxyRemoteSsl: true
-    proxyRemoteHost: "https://api.ibkr.com"
-    listenPort: 5000
-    listenSsl: false
-    ccp: false
-    svcEnvironment: "v1"
-    sslCert: "vertx.jks"
-    sslPwd: "mywebapi"
-    authDelay: 3000
-    portalBaseURL: ""
-    serverOptions:
-        blockedThreadCheckInterval: 1000000
-        eventLoopPoolSize: 20
-        workerPoolSize: 20
-        maxWorkerExecuteTime: 100
-        internalBlockingPoolSize: 20
-    cors:
-        origin.allowed: "*"
-        allowCredentials: true
-    webApps:
-        - name: "demo"
-          index: "index.html"
-    ips:
-      allow:
-        - "*"
+ip2loc: "US"
+proxyRemoteSsl: true
+proxyRemoteHost: "https://api.ibkr.com"
+listenPort: 5000
+listenSsl: false
+ccp: false
+svcEnvironment: "v1"
+sslCert: "vertx.jks"
+sslPwd: "mywebapi"
+authDelay: 3000
+portalBaseURL: ""
+serverOptions:
+    blockedThreadCheckInterval: 1000000
+    eventLoopPoolSize: 20
+    workerPoolSize: 20
+    maxWorkerExecuteTime: 100
+    internalBlockingPoolSize: 20
+cors:
+    origin.allowed: "*"
+    allowCredentials: true
+webApps:
+    - name: "demo"
+      index: "index.html"
+ips:
+  allow:
+    - "*"
