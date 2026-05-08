@@ -16,10 +16,12 @@ RUN unzip -q clientportal.gw.zip && \
         cp -rp clientportal.gw/. . && rm -rf clientportal.gw; \
     fi
 
+# Override bin/run.sh from zip with version using absolute paths
+COPY bin/run.sh bin/run.sh
 COPY root/conf.yaml root/conf.yaml
 COPY nexus_server.py nexus_server.py
 COPY start.sh start.sh
-RUN chmod +x start.sh
+RUN chmod +x start.sh bin/run.sh
 
 EXPOSE 8080
 
