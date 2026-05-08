@@ -2,11 +2,10 @@
 
 export JAVA_TOOL_OPTIONS="-Xmx1g -Xms256m"
 
-# Start IBKR gateway (stderr to stdout so errors appear in Render logs)
-sh /app/bin/run.sh 2>&1 &
-GW_PID=$!
+# </dev/null prevents gateway from reading closed stdin (Stream closed error)
+sh /app/bin/run.sh </dev/null 2>&1 &
 
-# Background monitor: log every 10s whether port 5000 is open
+# Background monitor: log when port 5000 opens
 (/opt/venv/bin/python3 -c "
 import socket, time
 for i in range(30):
@@ -22,5 +21,4 @@ else:
     print('GATEWAY NEVER opened port 5000 after 300s', flush=True)
 " 2>&1) &
 
-# Start FastAPI proxy immediately so Render detects PORT
 exec /opt/venv/bin/python nexus_server.py
