@@ -9,8 +9,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN python3 -m venv /opt/venv && \
     /opt/venv/bin/pip install --no-cache-dir fastapi uvicorn httpx
 
-COPY clientportal.gw.zip clientportal.gw.zip
-RUN unzip -q clientportal.gw.zip && rm clientportal.gw.zip
+COPY clientportal.gw.zip .
+RUN unzip -q clientportal.gw.zip && \
+    rm clientportal.gw.zip && \
+    if [ -d clientportal.gw ] && [ ! -f bin/run.sh ]; then \
+        cp -rp clientportal.gw/. . && rm -rf clientportal.gw; \
+    fi
 
 COPY root/conf.yaml root/conf.yaml
 COPY nexus_server.py nexus_server.py

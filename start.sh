@@ -1,6 +1,6 @@
 #!/bin/sh
+set -e
 
-# Limit JVM heap to avoid OOM on Render free tier (512MB)
 export JAVA_TOOL_OPTIONS="-Xmx256m -Xms64m"
 
 # Start IBKR Client Portal Gateway in background
@@ -21,5 +21,4 @@ print('ERROR: Gateway did not start within 90s')
 sys.exit(1)
 "
 
-# Start FastAPI proxy in foreground (Render monitors this process)
 exec /opt/venv/bin/python nexus_server.py
