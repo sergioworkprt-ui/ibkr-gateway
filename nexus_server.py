@@ -11,6 +11,10 @@ HOP_BY_HOP = {
     "te", "trailers", "transfer-encoding", "upgrade", "content-encoding",
 }
 
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
+
 @app.api_route("/{path:path}", methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD"])
 async def proxy(request: Request, path: str):
     url = f"{GATEWAY}/{path}"
