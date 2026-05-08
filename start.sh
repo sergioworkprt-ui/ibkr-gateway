@@ -2,11 +2,11 @@
 
 export JAVA_TOOL_OPTIONS="-Xmx1g -Xms256m"
 
-echo "=== /app/bin/run.sh in use ==="
+echo "=== bin/run.sh from zip ==="
 cat /app/bin/run.sh
-echo "=============================="
+echo "==========================="
 
-# Start gateway: stderr redirected to stdout so all Java errors appear in Render logs
+# Start gateway using zip's run.sh (correct Main-Class), stderr captured
 sh /app/bin/run.sh /app/root/conf.yaml 2>&1 &
 
 # Start FastAPI proxy immediately so Render detects $PORT
